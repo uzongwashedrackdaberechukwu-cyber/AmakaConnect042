@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 160" role="img" aria-labelledby="t d">
+<title id="t">AmakaConnect042</title><desc id="d">AmakaConnect042 connectivity monogram and wordmark</desc>
+<defs>
+  <linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#6B1648"/><stop offset=".55" stop-color="#E83E78"/><stop offset="1" stop-color="#D4A437"/></linearGradient>
+</defs>
+<g transform="translate(10 10)">
+  <path d="M66 8 9 133h28l13-30h49l14 30h30L84 8H66Zm-6 72 15-35 15 35H60Z" fill="url(#g)"/>
+  <path d="M96 38c18 4 32 16 39 32" fill="none" stroke="#E83E78" stroke-width="8" stroke-linecap="round"/>
+  <path d="M103 19c27 6 48 24 58 48" fill="none" stroke="#D4A437" stroke-width="7" stroke-linecap="round"/>
+  <rect x="104" y="73" width="25" height="42" rx="6" fill="#6B1648"/>
+  <rect x="109" y="79" width="15" height="26" rx="2" fill="#FFF8F2"/>
+  <circle cx="116.5" cy="110" r="2" fill="#FFF8F2"/>
+  <path d="M68 1 75 12 87 14 78 22 80 34 68 28 57 34 59 22 50 14 62 12Z" fill="#D4A437"/>
+</g>
+<text x="185" y="93" font-family="Arial, Helvetica, sans-serif" font-size="54" font-weight="800" fill="#251923">AmakaConnect<tspan fill="#E83E78">042</tspan></text>
+<text x="188" y="125" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="700" letter-spacing="5" fill="#6B1648">DATA • AIRTIME • ALWAYS ON</text>
+</svg>
