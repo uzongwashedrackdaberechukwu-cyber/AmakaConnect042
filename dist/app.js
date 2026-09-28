@@ -1,4 +1,8 @@
 const cfg=window.STORE_CONFIG||{}; const nets=["MTN","Airtel","Glo","9mobile"]; let selected={data:null,airtime:null}; let catalogue=null; let sb=null,user=null;
+if(cfg.supabaseUrl && cfg.supabaseAnonKey && window.supabase){
+  sb=window.supabase.createClient(cfg.supabaseUrl,cfg.supabaseAnonKey);
+}
+
 const $=id=>document.getElementById(id); const money=n=>`₦${Number(n||0).toLocaleString("en-NG",{minimumFractionDigits:2,maximumFractionDigits:2})}`;
 function closeAlert(){$("alert").style.display="none";localStorage.setItem("ac-alert","seen")} if(localStorage.getItem("ac-alert")==="seen")$("alert").style.display="none";
 function toggleMenu(){$("menu").classList.toggle("open");$("shade").classList.toggle("open")}
