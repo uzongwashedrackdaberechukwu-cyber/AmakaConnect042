@@ -1,1 +1,57 @@
-<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>AmakaConnect042 Admin</title><link rel="stylesheet" href="styles.css"><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script></head><body><main style="max-width:1100px;margin:auto"><section class="page active"><h1>AmakaConnect042 Admin</h1><p>Operations control centre</p><div class="card"><label>Email<input id="email" type="email"></label><label>Password<input id="password" type="password"></label><button class="primary" onclick="login()">Admin Sign In</button><p id="msg"></p></div><div id="panel" class="hidden"><div class="quick"><button><b id="users">0</b><span>Customers</span></button><button><b id="pending">0</b><span>Pending Funding</span></button><button><b id="txs">0</b><span>Transactions</span></button></div><div class="card"><div class="titleline"><h2>Funding Requests</h2><button onclick="loadAll()">Refresh</button></div><div id="funds" class="list"></div></div><div class="card"><h2>Recent Transactions</h2><div id="adminTx" class="list"></div></div></div></section></main><script src="config.js"></script><script src="admin.js"></script></body></html>
+<!doctype html>
+<html lang="en-NG">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#6B1648">
+<title>AmakaConnect042 Admin</title>
+<link rel="stylesheet" href="styles.css">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<style>
+.adminwrap{width:min(1000px,100%);margin:auto;padding:25px 16px 80px}
+.adminhero{background:#6b1648;color:white;border-radius:22px;padding:24px;margin-bottom:18px}
+.adminhero h1{margin:0 0 5px;font-size:27px}.adminhero p{margin:0;opacity:.75}
+.adminlogin{max-width:460px;margin:25px auto}.adminstats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:18px 0}
+.stat{background:white;border:1px solid #eadde4;border-radius:17px;padding:18px}.stat b,.stat span{display:block}.stat b{font-size:27px;color:#6b1648}.stat span{font-size:12px;color:#786a72;margin-top:5px}
+.adminsection{background:#fff;border:1px solid #eadde4;border-radius:20px;padding:18px;margin:14px 0}.adminsection h2{font-size:18px;margin:0 0 14px}
+@media(max-width:550px){.adminstats{grid-template-columns:1fr}.adminhero{padding:20px}}
+</style>
+</head>
+<body>
+<div class="adminwrap">
+  <div class="adminhero">
+    <small>AMAKACONNECT042</small>
+    <h1>Admin Control Centre</h1>
+    <p>Customers, wallet funding and transaction operations.</p>
+  </div>
+
+  <div class="formcard adminlogin">
+    <h2>Administrator Sign In</h2>
+    <label>Email<input id="email" type="email" autocomplete="email"></label>
+    <label>Password<input id="password" type="password" autocomplete="current-password"></label>
+    <button class="primary full" onclick="login()">Sign In</button>
+    <p id="msg" class="formnote"></p>
+  </div>
+
+  <div id="panel" class="hidden">
+    <div class="adminstats">
+      <div class="stat"><b id="users">0</b><span>Customers</span></div>
+      <div class="stat"><b id="pending">0</b><span>Pending Funding</span></div>
+      <div class="stat"><b id="txs">0</b><span>Transactions</span></div>
+    </div>
+
+    <div class="adminsection">
+      <div class="sectionhead"><h2>Funding Requests</h2><button onclick="loadAll()">Refresh</button></div>
+      <div id="funds" class="list"></div>
+    </div>
+
+    <div class="adminsection">
+      <h2>Recent Transactions</h2>
+      <div id="adminTx" class="list"></div>
+    </div>
+  </div>
+</div>
+<script src="config.js"></script>
+<script src="admin.js"></script>
+</body>
+</html>

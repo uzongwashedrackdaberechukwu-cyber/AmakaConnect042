@@ -1,0 +1,10 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "amakaconnect042",
+  "main": "worker/index.js",
+  "compatibility_date": "2026-09-28",
+  "assets": {
+    "directory": "./dist",
+    "binding": "ASSETS"
+  }
+}

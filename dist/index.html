@@ -1,12 +1,222 @@
-<!doctype html><html lang="en-NG"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#190d18"><title>AmakaConnect042</title><link rel="icon" href="assets/favicon.svg"><link rel="stylesheet" href="styles.css"><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script></head><body><div id="authGate" class="authgate"><div class="authbox"><img src="assets/logo.svg"><h1>Welcome to AmakaConnect042</h1><p>Sign in to manage your wallet and buy services.</p><div class="authswitch"><button id="loginTab" class="on" onclick="authMode('login')">Sign in</button><button id="signupTab" onclick="authMode('signup')">Create account</button></div><div id="nameWrap" class="hidden"><label>Full name<input id="authName" autocomplete="name"></label></div><label>Email<input id="authEmail" type="email" autocomplete="email"></label><label>Password<input id="authPassword" type="password" minlength="6" autocomplete="current-password"></label><label id="authPhoneWrap" class="hidden">Phone<input id="authPhone" type="tel" autocomplete="tel"></label><button id="authSubmit" class="primary" onclick="submitAuth()">Sign in</button><p id="authMessage" class="authmessage"></p></div></div>
-<div id="alert" class="overlay"><div class="alertbox"><div class="alerthead"><span>ⓘ</span><div><small>PUBLIC ALERT</small><h2>Hello 😊</h2></div></div><div class="alertbody"><p>1. Message us whenever you have a pending transaction.</p><p>2. Only confirm wallet funding after you have transferred the money.</p><p>Thanks for using AmakaConnect042!</p><button onclick="closeAlert()">Got it</button></div></div></div>
-<header><button class="icon" onclick="toggleMenu()">☰</button><img src="assets/favicon.svg"><b>AmakaConnect<span>042</span></b><div class="spacer"></div><button class="icon">♧</button><button class="avatar" id="avatarBtn" onclick="signOut()" title="Sign out">A</button></header>
-<aside id="menu"><div class="menubrand"><img src="assets/favicon.svg"><b>AmakaConnect<span>042</span></b><button onclick="toggleMenu()">×</button></div><nav><button onclick="go('dashboard')">▦ Dashboard</button><button onclick="go('data')">⌁ Buy Data</button><button onclick="go('airtime')">☎ Buy Airtime</button><button onclick="go('wallet')">▣ Fund Wallet</button><button onclick="go('transactions')">◴ Transactions</button><button onclick="go('settings')">⚙ Settings</button></nav><a class="wa" href="https://wa.me/2349127805179">WhatsApp Support</a></aside><div id="shade" onclick="toggleMenu()"></div>
+<!doctype html>
+<html lang="en-NG">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#6B1648">
+<title>AmakaConnect042</title>
+<link rel="icon" href="assets/favicon.svg">
+<link rel="stylesheet" href="styles.css">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+
+<div id="authGate" class="authgate">
+  <div class="authbox">
+    <img src="assets/logo.svg" alt="AmakaConnect042">
+    <h1 id="authTitle">Welcome back</h1>
+    <p id="authLead">Sign in to continue to your account.</p>
+
+    <div class="authswitch">
+      <button id="loginTab" class="on" onclick="authMode('login')">Sign in</button>
+      <button id="signupTab" onclick="authMode('signup')">Create account</button>
+    </div>
+
+    <div id="nameWrap" class="hidden">
+      <label>Full name<input id="authName" autocomplete="name" placeholder="Your full name"></label>
+    </div>
+
+    <label>Email<input id="authEmail" type="email" autocomplete="email" placeholder="you@example.com"></label>
+
+    <label>Password
+      <input id="authPassword" type="password" minlength="6" autocomplete="current-password" placeholder="Minimum 6 characters">
+    </label>
+
+    <label id="authPhoneWrap" class="hidden">Phone
+      <input id="authPhone" type="tel" autocomplete="tel" placeholder="080XXXXXXXX">
+    </label>
+
+    <button id="authSubmit" class="primary full" onclick="submitAuth()">Sign in</button>
+    <p id="authMessage" class="authmessage"></p>
+
+    <div id="confirmationBox" class="confirmation hidden">
+      <b>Check your email</b>
+      <span>We sent you a confirmation link. Open it, confirm your email, then return here and sign in.</span>
+      <button onclick="authMode('login')">Back to sign in</button>
+    </div>
+  </div>
+</div>
+
+<header>
+  <button class="headicon" onclick="toggleMenu()" aria-label="Menu">☰</button>
+  <div class="brand">
+    <img src="assets/favicon.svg" alt="">
+    <div><b>AmakaConnect042</b><small>Everyday digital services</small></div>
+  </div>
+  <div class="spacer"></div>
+  <button class="avatar" id="avatarBtn" onclick="signOut()" title="Sign out">A</button>
+</header>
+
+<aside id="menu">
+  <div class="menubrand">
+    <img src="assets/favicon.svg" alt="">
+    <div><b>AmakaConnect042</b><small>Customer Portal</small></div>
+    <button onclick="toggleMenu()">×</button>
+  </div>
+
+  <nav>
+    <button onclick="go('dashboard')">⌂ <span>Home</span></button>
+    <button onclick="go('data')">⌁ <span>Data</span></button>
+    <button onclick="go('airtime')">☎ <span>Airtime</span></button>
+    <button onclick="go('cable')">▣ <span>Cable TV</span></button>
+    <button onclick="go('electricity')">ϟ <span>Electricity</span></button>
+    <button onclick="go('wallet')">₦ <span>Fund Wallet</span></button>
+    <button onclick="go('transactions')">↗ <span>Transactions</span></button>
+    <button onclick="go('settings')">⚙ <span>Account</span></button>
+  </nav>
+
+  <a class="support" href="https://wa.me/2349127805179">WhatsApp Support</a>
+</aside>
+<div id="shade" onclick="toggleMenu()"></div>
+
 <main>
-<section id="dashboard" class="page active"><p class="hello">Welcome back 👋</p><h1>Manage your wallet and services</h1><div class="balance"><div><small>AVAILABLE BALANCE</small><strong id="walletBalance">₦0.00</strong><em>Basic Account • NGN</em></div><button onclick="go('wallet')">＋ Fund Wallet</button></div><h2>Quick Actions</h2><div class="quick"><button onclick="go('data')"><i>⌁</i><b>Buy Data</b><span>Affordable bundles</span></button><button onclick="go('airtime')"><i>☎</i><b>Buy Airtime</b><span>All networks supported</span></button></div><div class="titleline"><h2>Recent Transactions</h2><button onclick="go('transactions')">View all →</button></div><div class="empty"><i>↗</i><b>No transactions yet</b><span>Your data, airtime and wallet activity will appear here.</span></div></section>
-<section id="data" class="page"><h1>Buy Data</h1><p>Instant data delivery, straight to any Nigerian number.</p><div class="card"><h2>Network</h2><div class="networks" data-group="data"></div><label>Phone Number<input id="dataPhone" placeholder="080XXXXXXXX" inputmode="numeric"></label><small>Data will be sent to this number.</small><h2>Data Plan</h2><div class="apiwait">Loading live plans…</div></div><div class="checkout"><span id="dataCheckoutText">Select a data plan to continue</span><button id="dataBuyBtn" onclick="dataOrder()" disabled>⌁ Buy Data →</button></div></section>
-<section id="airtime" class="page"><h1>Buy Airtime</h1><p>Recharge any Nigerian number instantly.</p><div class="card"><h2>Network</h2><div class="networks" data-group="airtime"></div><label>Phone Number<input id="airPhone" placeholder="080XXXXXXXX" inputmode="numeric"></label><small>Airtime will be sent to this number.</small><h2>Quick Amount</h2><div class="amounts"></div><label>Amount (₦)<input id="airAmount" type="number" placeholder="₦ 0"></label><small>Enter any whole Naira amount.</small><div class="summary"><p><span>Network</span><b id="sumNet">—</b></p><p><span>Phone</span><b id="sumPhone">—</b></p><p><span>Airtime</span><b id="sumAmount">—</b></p><p><span>Wallet balance</span><b>₦0</b></p></div><button class="primary" onclick="airtimeOrder()">Buy Airtime →</button></div></section>
-<section id="wallet" class="page"><div class="banner"><i>▣</i><div><h1>Fund Wallet</h1><p>Add money to your AmakaConnect042 wallet</p></div></div><div class="card"><h2>Bank Transfer</h2><p>Transfer using your banking app.</p><div class="notice" id="bankDetails">Bank account details have not been configured yet.</div></div><div class="card"><h2>Funding Details</h2><label>Amount (₦)<input id="fundAmount" type="number" placeholder="₦ 5,000"></label><div class="fundamounts"></div><label>Payment Reference (Optional)<input id="fundReference" placeholder="Bank reference (if available)"></label><button class="primary" onclick="submitFunding()">I've Made Payment →</button></div><div class="card"><h2>Recent Funding Requests</h2><div id="fundingList" class="list"><span class="muted">No funding requests yet.</span></div></div></section>
-<section id="transactions" class="page"><h1>Transactions</h1><p>Your data, airtime and wallet activity.</p><div id="transactionList" class="card list"><span class="muted">No transactions yet.</span></div></section>
-<section id="settings" class="page"><h1>Settings</h1><p>Manage your account, security and profile.</p><div class="tabs"><button class="on">Account</button><button>Security</button><button>Profile</button></div><div class="card account"><h2>Account</h2><p><span>Full Name</span><b id="profileName">—</b></p><p><span>Username</span><b id="profileUsername">— not set —</b></p><p><span>Email</span><b id="profileEmail">—</b></p><p><span>Phone</span><b id="profilePhone">— not set —</b></p><button class="primary">✎ Edit</button></div></section>
-</main><a class="chat" href="https://wa.me/2349127805179">◉</a><script src="config.js"></script><script src="app.js"></script></body></html>
+<section id="dashboard" class="page active">
+  <div class="welcome">
+    <div>
+      <small>WELCOME</small>
+      <h1 id="welcomeName">Your digital services, in one place.</h1>
+      <p>Top up, pay bills and manage your wallet from your phone.</p>
+    </div>
+  </div>
+
+  <div class="walletcard">
+    <div>
+      <small>WALLET BALANCE</small>
+      <strong id="walletBalance">₦0.00</strong>
+      <span>NGN Wallet</span>
+    </div>
+    <button onclick="go('wallet')">＋ Add Money</button>
+  </div>
+
+  <div class="sectionhead"><h2>What do you need?</h2></div>
+  <div class="services">
+    <button onclick="go('data')"><i>⌁</i><b>Data</b><span>Buy bundles</span></button>
+    <button onclick="go('airtime')"><i>☎</i><b>Airtime</b><span>Recharge</span></button>
+    <button onclick="go('cable')"><i>▣</i><b>Cable TV</b><span>Renew TV</span></button>
+    <button onclick="go('electricity')"><i>ϟ</i><b>Electricity</b><span>Pay power bill</span></button>
+  </div>
+
+  <div class="sectionhead">
+    <h2>Recent activity</h2>
+    <button onclick="go('transactions')">See all</button>
+  </div>
+  <div id="dashboardTransactions" class="activity empty-state">
+    <b>No transactions yet</b>
+    <span>Your purchases and wallet activity will appear here.</span>
+  </div>
+</section>
+
+<section id="data" class="page">
+  <div class="pagehead"><button onclick="go('dashboard')">←</button><div><h1>Buy Data</h1><p>Choose a network and data plan.</p></div></div>
+  <div class="formcard">
+    <label>Network</label>
+    <div class="networks" data-group="data"></div>
+    <label>Phone number<input id="dataPhone" inputmode="numeric" placeholder="080XXXXXXXX"></label>
+    <label>Data plan</label>
+    <div class="apiwait">Loading available plans…</div>
+    <button id="dataBuyBtn" class="primary full" onclick="dataOrder()" disabled>Buy Data</button>
+    <p id="dataCheckoutText" class="formnote">Select a plan to continue.</p>
+  </div>
+</section>
+
+<section id="airtime" class="page">
+  <div class="pagehead"><button onclick="go('dashboard')">←</button><div><h1>Buy Airtime</h1><p>Recharge a Nigerian mobile number.</p></div></div>
+  <div class="formcard">
+    <label>Network</label>
+    <div class="networks" data-group="airtime"></div>
+    <label>Phone number<input id="airPhone" inputmode="numeric" placeholder="080XXXXXXXX"></label>
+    <label>Amount<input id="airAmount" type="number" inputmode="numeric" placeholder="Enter amount"></label>
+    <div class="amounts"></div>
+    <div class="summary">
+      <p><span>Network</span><b id="sumNet">—</b></p>
+      <p><span>Phone</span><b id="sumPhone">—</b></p>
+      <p><span>Amount</span><b id="sumAmount">—</b></p>
+      <p><span>Wallet</span><b>₦0.00</b></p>
+    </div>
+    <button class="primary full" onclick="airtimeOrder()">Buy Airtime</button>
+  </div>
+</section>
+
+<section id="cable" class="page">
+  <div class="pagehead"><button onclick="go('dashboard')">←</button><div><h1>Cable TV</h1><p>Renew supported television subscriptions.</p></div></div>
+  <div class="formcard">
+    <div id="cableStatus" class="service-status">
+      <b>Connecting Cable TV service…</b>
+      <span>Available providers and packages will load from the live service catalogue.</span>
+    </div>
+    <div id="cableProducts" class="bill-products"></div>
+  </div>
+</section>
+
+<section id="electricity" class="page">
+  <div class="pagehead"><button onclick="go('dashboard')">←</button><div><h1>Electricity</h1><p>Pay supported electricity bills securely.</p></div></div>
+  <div class="formcard">
+    <div id="electricityStatus" class="service-status">
+      <b>Connecting Electricity service…</b>
+      <span>Available electricity providers will load from the live service catalogue.</span>
+    </div>
+    <div id="electricityProducts" class="bill-products"></div>
+  </div>
+</section>
+
+<section id="wallet" class="page">
+  <div class="pagehead"><button onclick="go('dashboard')">←</button><div><h1>Fund Wallet</h1><p>Transfer to the account below, then submit your request.</p></div></div>
+
+  <div class="bankcard">
+    <small>TRANSFER TO</small>
+    <h2 id="bankName">Zenith Bank</h2>
+    <strong id="bankNumber">2548335435</strong>
+    <p id="bankAccountName">Uzongwa Chiamaka</p>
+    <button onclick="copyAccount()">Copy account number</button>
+  </div>
+
+  <div class="formcard">
+    <label>Amount transferred<input id="fundAmount" type="number" inputmode="numeric" placeholder="₦ Amount"></label>
+    <div class="fundamounts"></div>
+    <label>Bank reference <span>(optional)</span><input id="fundReference" placeholder="Transfer reference"></label>
+    <button class="primary full" onclick="submitFunding()">Submit Funding Request</button>
+    <p class="formnote">Your wallet is credited after the transfer is reviewed.</p>
+  </div>
+
+  <div class="formcard">
+    <h2>Funding requests</h2>
+    <div id="fundingList" class="list"><span class="muted">No funding requests yet.</span></div>
+  </div>
+</section>
+
+<section id="transactions" class="page">
+  <div class="pagehead"><button onclick="go('dashboard')">←</button><div><h1>Transactions</h1><p>Wallet and service activity.</p></div></div>
+  <div id="transactionList" class="list formcard"><span class="muted">No transactions yet.</span></div>
+</section>
+
+<section id="settings" class="page">
+  <div class="pagehead"><button onclick="go('dashboard')">←</button><div><h1>My Account</h1><p>Your AmakaConnect042 profile.</p></div></div>
+  <div class="profilecard">
+    <div class="profileavatar" id="profileAvatar">A</div>
+    <h2 id="profileName">—</h2>
+    <span id="profileEmail">—</span>
+    <div class="profiledetails">
+      <p><span>Username</span><b id="profileUsername">Not set</b></p>
+      <p><span>Phone</span><b id="profilePhone">Not set</b></p>
+    </div>
+    <button class="danger" onclick="signOut()">Sign out</button>
+  </div>
+</section>
+</main>
+
+<a class="chat" href="https://wa.me/2349127805179" aria-label="WhatsApp">WA</a>
+
+<script src="config.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
